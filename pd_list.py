@@ -18,7 +18,7 @@ from datetime import date
 from pywikibot import pagegenerators as pg
 
 # pd_year = date.today().year - 70
-pd_year_today = 2022
+pd_year_today = 2023
 pd_year = pd_year_today - 71
 pd_year_1 = (pd_year + 1)
 print(pd_year)
@@ -34,11 +34,11 @@ QUERY = ('''SELECT DISTINCT ?item (year(?birthdate) as ?birthyear) ?deathdate WH
 wikidata_site = pywikibot.Site("wikidata", "wikidata")
 generator = pg.WikidataSPARQLPageGenerator(QUERY, site=wikidata_site)
 
-author_qlist = ("Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619")
+author_qlist = ("Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181" , "Q1281618" , "Q1930187" , "Q214917" , "Q10800557" , "Q2259451" , "Q2500638" , "Q2526255" , "Q333634" , "Q33999"  , "Q36834" , "Q4853732" , "Q486748" , "Q49757" , "Q6051619" , "Q6625963")
 authors = dict()
 wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
 Em Portugal, uma obra entra em [[domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=http://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?artigo_id=484A0031&nid=484&tabela=leis&pagina=1&ficha=1&so_miolo=&nversao=#artigo |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
-Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) +"""'''.
+Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
 ! Data de Nascimento
@@ -94,18 +94,23 @@ for item in generator:
 
             print("--", a_name, date_of_death, date_of_birth, item.title())
 
-            wikitext = (wikitext + """"
+            wikitext = (wikitext + """
 |-
 || [[""" + a_name + """]]
-|| """ + date_of_birth + """
-|| """ + date_of_death + """
+|| """ + str(date_of_birth) + """
+|| """ + str(date_of_death) + """
 || {{Q|""" + item.title() + """}}""")
-            # print (wikitext)
+            print (wikitext)
 
             # break
+    except Exception as e:
+        print ("error: ", a_name, e)
 
-    except:
-        pass
+
+
+    # except:
+    #     print ("error with")
+    #     pass
 wikitext = wikitext + """\n|}
 
 ==Referências==
