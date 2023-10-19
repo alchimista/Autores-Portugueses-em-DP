@@ -116,7 +116,7 @@ wikitext = wikitext + """\n|}
 ==Referências==
 {{reflist}}
 
-[[Categoria:Domínio público]]
+[[Categoria:Listas sobre domínio público]]
 [[Categoria:%s]]""" % (pd_year_today)
 print(wikitext)
 
