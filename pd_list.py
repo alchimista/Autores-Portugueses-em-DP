@@ -18,7 +18,7 @@ from datetime import date
 from pywikibot import pagegenerators as pg
 
 # pd_year = date.today().year - 70
-pd_year_today = 2023
+pd_year_today = 2025
 pd_year = pd_year_today - 71
 pd_year_1 = (pd_year + 1)
 print(pd_year)
@@ -34,7 +34,11 @@ QUERY = ('''SELECT DISTINCT ?item (year(?birthdate) as ?birthyear) ?deathdate WH
 wikidata_site = pywikibot.Site("wikidata", "wikidata")
 generator = pg.WikidataSPARQLPageGenerator(QUERY, site=wikidata_site)
 
-author_qlist = ("Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181" , "Q1281618" , "Q1930187" , "Q214917" , "Q10800557" , "Q2259451" , "Q2500638" , "Q2526255" , "Q333634" , "Q33999"  , "Q36834" , "Q4853732" , "Q486748" , "Q49757" , "Q6051619" , "Q6625963")
+author_qlist = (
+"Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
+"Q1281618", "Q1930187", "Q214917", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634", "Q33999", "Q36834",
+"Q4853732", "Q486748", "Q49757", "Q6051619", "Q6625963")
+
 authors = dict()
 wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
 Em Portugal, uma obra entra em [[domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=http://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?artigo_id=484A0031&nid=484&tabela=leis&pagina=1&ficha=1&so_miolo=&nversao=#artigo |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
@@ -44,15 +48,44 @@ Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio púb
 ! Data de Nascimento
 ! Data de Morte
 ! Item no Wikidata"""
+
+
+wikisource = """Quando o [[w:direito autoral|]] de uma obra expira, ela entra em '''[[w:domínio público]]'''.
+Em Portugal, uma obra entra em [[w:domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=temp |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
+Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
+{| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
+! Nome
+! Data de Nascimento
+! Data de Morte
+! Item no Wikidata"""
+
 for item in generator:
     # print(item)
-    item_dict = item.get()  # Get the item dictionary
+    item_dict = item.get(get_redirect= True)  # Get the item dictionary
     # print (item_dict["labels"])
+    print(type(item))
+    print (item)
+
     try:
+        a_name = item.getSitelink('ptwiki')
+    except pywikibot.exceptions.NoSiteLinkError:
+
         a_name = item_dict["labels"]['pt']
-    except KeyError:
+
+    except:
         a_name = item_dict["labels"]['en']
+
         print("no pt label")
+
+    # Falta obter página no wikisource
+    # try:
+    #     ws_name = item.getSitelink('ptwikisource')
+    # except pywikibot.exceptions.NoSiteLinkError:
+    #
+    #     ws_name = item_dict["labels"]['pt']
+    #
+    # except:
+    #     ws_name = item_dict["labels"]['en']
 
     clm_dict = item_dict["claims"]  # Get the claim dictionary
     # print(clm_dict)
@@ -100,13 +133,18 @@ for item in generator:
 || """ + str(date_of_birth) + """
 || """ + str(date_of_death) + """
 || {{Q|""" + item.title() + """}}""")
-            print (wikitext)
+            print(wikitext)
+
+            wikisource = (wikisource + """
+|-
+|| [[author:"""+ a_name + """|]]
+|| """ + str(date_of_birth) + """
+|| """ + str(date_of_death) + """
+|| {{Q|""" + item.title() + """}}""")
 
             # break
     except Exception as e:
-        print ("error: ", a_name, e)
-
-
+        print("error: ", a_name, e)
 
     # except:
     #     print ("error with")
@@ -120,7 +158,24 @@ wikitext = wikitext + """\n|}
 [[Categoria:%s]]""" % (pd_year_today)
 print(wikitext)
 
+
+wikisource = wikisource + """"\n|}
+
+==Referências==
+{{reflist}}
+
+[[Categoria:Listas sobre domínio público]]
+[[Categoria:%s]]""" % (pd_year_today)
+
 site = pywikibot.Site('pt', 'wikipedia')
 page = pywikibot.Page(site, "User:Aleth Bot/PD{}".format(pd_year_today))
 page.text = wikitext
 page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
+
+print (wikisource)
+
+
+wsite = pywikibot.Site('pt', 'wikisource')
+ws_page = pywikibot.Page(wsite, "User:Aleth Bot/PD{}".format(pd_year_today))
+ws_page.text = wikisource
+#ws_page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
