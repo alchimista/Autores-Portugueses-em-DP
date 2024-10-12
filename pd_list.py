@@ -37,7 +37,7 @@ generator = pg.WikidataSPARQLPageGenerator(QUERY, site=wikidata_site)
 author_qlist = (
 "Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
 "Q1281618", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634", "Q33999",
-"Q4853732", "Q486748", "Q6051619", "Q6625963")
+"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973")
 
 authors = dict()
 wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
