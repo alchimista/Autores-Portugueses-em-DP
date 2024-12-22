@@ -1,6 +1,7 @@
 # pywikibot personal settings
 throttle.ctrl
 pywikibot.lwp
+pywikibot-Aleth_Bot.lwp
 .lwp
 user-*.py
 *.bak
