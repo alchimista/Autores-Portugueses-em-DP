@@ -1,5 +1,7 @@
 # pywikibot personal settings
 user-config.py
+.lwp
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
