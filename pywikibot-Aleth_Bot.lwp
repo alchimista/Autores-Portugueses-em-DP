@@ -1,0 +1,35 @@
+#LWP-Cookies-2.0
+Set-Cookie3: WMF-Last-Access="22-Dec-2024"; path="/"; domain="www.wikidata.org"; path_spec; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="www.wikidata.org"; path_spec; secure; expires="2024-12-22 11:45:01Z"; SameSite=Lax; version=0
+Set-Cookie3: WMF-Last-Access-Global="22-Dec-2024"; path="/"; domain=".wikidata.org"; path_spec; domain_dot; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: GeoIP="PT:03:Braga:41.55:-8.42:v4"; path="/"; domain=".wikidata.org"; path_spec; domain_dot; secure; discard; version=0
+Set-Cookie3: WMF-Last-Access="22-Dec-2024"; path="/"; domain="meta.wikimedia.org"; path_spec; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="meta.wikimedia.org"; path_spec; secure; expires="2024-12-22 11:45:05Z"; SameSite=Lax; version=0
+Set-Cookie3: GeoIP="PT:03:Braga:41.55:-8.42:v4"; path="/"; domain=".wikimedia.org"; path_spec; domain_dot; secure; discard; version=0
+Set-Cookie3: WMF-Last-Access="22-Dec-2024"; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2024-12-22 11:45:06Z"; SameSite=Lax; version=0
+Set-Cookie3: ptwikiSession=enkbvjp5foilguij5i6djf59n2mc43j1; path="/"; domain="pt.wikipedia.org"; path_spec; secure; discard; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: ptwikiUserID=862253; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2025-12-22 10:45:25Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: ptwikiUserName="Aleth%20Bot"; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2025-12-22 10:45:25Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: loginnotify_prevlogins="2024-1b20hax-3mzv5wzin7s7xsr0jm1roesbtmhq5yu"; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2025-06-20 10:45:25Z"; HttpOnly=None; version=0
+Set-Cookie3: ptwikiBlockID="500470%21294c3cf5e684bdf36792739597ee35bf7a26ceb169f82583e2835638c794ffe97accfed363fddfa7924e3998346132964b889ad916cff2a8359c40016bc0bad5"; path="/"; domain="pt.wikipedia.org"; path_spec; secure; expires="2024-12-23 10:45:06Z"; version=0
+Set-Cookie3: WMF-Last-Access-Global="22-Dec-2024"; path="/"; domain=".wikipedia.org"; path_spec; domain_dot; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: GeoIP="PT:03:Braga:41.55:-8.42:v4"; path="/"; domain=".wikipedia.org"; path_spec; domain_dot; secure; discard; version=0
+Set-Cookie3: centralauth_User="Aleth%20Bot"; path="/"; domain=".wikipedia.org"; path_spec; domain_dot; secure; expires="2025-12-22 10:45:25Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_Token=100e3723cfb89f5558f2acf7d24a81da; path="/"; domain=".wikipedia.org"; path_spec; domain_dot; secure; expires="2025-12-22 10:45:25Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_Session=fb549225255e0b3540f12506e19229f1; path="/"; domain=".wikipedia.org"; path_spec; domain_dot; secure; discard; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: WMF-Last-Access="22-Dec-2024"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2024-12-22 11:45:08Z"; SameSite=Lax; version=0
+Set-Cookie3: WMF-Last-Access="22-Dec-2024"; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2024-12-22 11:55:18Z"; SameSite=Lax; version=0
+Set-Cookie3: ptwikisourceSession=4v28pifnthuibuuvhtei4dvm5rcu0v26; path="/"; domain="pt.wikisource.org"; path_spec; secure; discard; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: ptwikisourceUserID=38527; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2025-12-22 10:55:21Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: ptwikisourceUserName="Aleth%20Bot"; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2025-12-22 10:55:21Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: loginnotify_prevlogins="2024-f7q2e9-2nh6sedqboht72irm9827f4slbvhhju"; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2025-06-20 10:55:21Z"; HttpOnly=None; version=0
+Set-Cookie3: cpPosIndex="2%401734864921%23b389aa0c9f42f8605dd49c0aecb4a4f8"; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2024-12-22 10:55:31Z"; HttpOnly=None; version=0
+Set-Cookie3: UseDC=master; path="/"; domain="pt.wikisource.org"; path_spec; secure; expires="2024-12-22 10:55:31Z"; HttpOnly=None; version=0
+Set-Cookie3: WMF-Last-Access-Global="22-Dec-2024"; path="/"; domain=".wikisource.org"; path_spec; domain_dot; secure; expires="2025-01-23 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: GeoIP="PT:03:Braga:41.55:-8.42:v4"; path="/"; domain=".wikisource.org"; path_spec; domain_dot; secure; discard; version=0
+Set-Cookie3: centralauth_User="Aleth%20Bot"; path="/"; domain=".wikisource.org"; path_spec; domain_dot; secure; expires="2025-12-22 10:55:21Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_Token=100e3723cfb89f5558f2acf7d24a81da; path="/"; domain=".wikisource.org"; path_spec; domain_dot; secure; expires="2025-12-22 10:55:21Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_Session=192e82fa6e4379b248c06e0d0dea563c; path="/"; domain=".wikisource.org"; path_spec; domain_dot; secure; discard; HttpOnly=None; SameSite=None; version=0
