@@ -18,7 +18,7 @@ from datetime import date
 from pywikibot import pagegenerators as pg
 
 # pd_year = date.today().year - 70
-pd_year_today = 2025
+pd_year_today = 2026
 pd_year = pd_year_today - 71
 pd_year_1 = (pd_year + 1)
 print(pd_year)
@@ -69,13 +69,19 @@ for item in generator:
     try:
         a_name = item.getSitelink('ptwiki')
     except pywikibot.exceptions.NoSiteLinkError:
-
-        a_name = item_dict["labels"]['pt']
-
-    except:
-        a_name = item_dict["labels"]['en']
-
-        print("no pt label")
+        try:
+            a_name = item_dict["labels"]['pt']
+        except:
+            print("no pt label")
+            try:
+                a_name = item_dict["labels"]['mul']
+            except:
+                print("no mul label")
+                try:
+                    a_name = item_dict["labels"]['en']
+                except:
+                    print("no en label either!")
+                    print (item_dict["labels"])
 
     # Falta obter página no wikisource
     # try:
