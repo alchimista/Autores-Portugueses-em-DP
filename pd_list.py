@@ -40,23 +40,21 @@ author_qlist = (
 "Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999")
 
 authors = dict()
-wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
+wikitext = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[direito autoral]] de uma obra expira, ela entra em [[domínio público]].
 Em Portugal, uma obra entra em [[domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=http://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?artigo_id=484A0031&nid=484&tabela=leis&pagina=1&ficha=1&so_miolo=&nversao=#artigo |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
-Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de Nascimento
-! Data de Morte
+! Data de nascimento
+! Data de morte
 ! Item no Wikidata"""
 
 
-wikisource = """Quando o [[w:direito autoral|]] de uma obra expira, ela entra em '''[[w:domínio público]]'''.
+wikisource = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[w:direito autoral|]] de uma obra expira, ela entra em [[w:domínio público]].
 Em Portugal, uma obra entra em [[w:domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=temp |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
-Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de Nascimento
-! Data de Morte
+! Data de nascimento
+! Data de morte
 ! Item no Wikidata"""
 
 for item in generator:
