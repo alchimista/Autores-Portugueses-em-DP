@@ -18,7 +18,7 @@ from datetime import date
 from pywikibot import pagegenerators as pg
 
 # pd_year = date.today().year - 70
-pd_year_today = 2025
+pd_year_today = 2026
 pd_year = pd_year_today - 71
 pd_year_1 = (pd_year + 1)
 print(pd_year)
@@ -37,26 +37,32 @@ generator = pg.WikidataSPARQLPageGenerator(QUERY, site=wikidata_site)
 author_qlist = (
 "Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
 "Q1281618", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634", 
-"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999")
+"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999", "Q130258037",
+"Q11774156", "Q901", "Q28389", "Q33231", "Q82594", "Q121594", "Q177220",
+"Q183945", "Q191633", "Q191633", "Q329439", "Q589298", "Q639669", "Q644687",
+"Q674426", "Q715301", "Q864380", "Q876864", "Q1350157", "Q1414443", "Q1607826",
+"Q1622272", "Q1706722", "Q1925963", "Q2516866", "Q3282637", "Q3330547",
+"Q3391743", "Q3400985", "Q4164507", "Q4220892", "Q4263842", "Q4964182",
+"Q5322166", "Q5669847", "Q9379869", "Q10694573", "Q10798782", "Q11569986",
+"Q11774202", "Q12144794", "Q15077007", "Q15296811", "Q15980158", "Q16947657",
+"Q17098559", "Q17167049", "Q18844224", "Q19507792", "Q21550489", "Q73306227")
 
 authors = dict()
-wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
+wikitext = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[direito autoral]] de uma obra expira, ela entra em [[domínio público]].
 Em Portugal, uma obra entra em [[domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=http://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?artigo_id=484A0031&nid=484&tabela=leis&pagina=1&ficha=1&so_miolo=&nversao=#artigo |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
-Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de Nascimento
-! Data de Morte
+! Data de nascimento
+! Data de morte
 ! Item no Wikidata"""
 
 
-wikisource = """Quando o [[w:direito autoral|]] de uma obra expira, ela entra em '''[[w:domínio público]]'''.
+wikisource = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[w:direito autoral|]] de uma obra expira, ela entra em [[w:domínio público]].
 Em Portugal, uma obra entra em [[w:domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=temp |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
-Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de Nascimento
-! Data de Morte
+! Data de nascimento
+! Data de morte
 ! Item no Wikidata"""
 
 for item in generator:
@@ -69,13 +75,19 @@ for item in generator:
     try:
         a_name = item.getSitelink('ptwiki')
     except pywikibot.exceptions.NoSiteLinkError:
-
-        a_name = item_dict["labels"]['pt']
-
-    except:
-        a_name = item_dict["labels"]['en']
-
-        print("no pt label")
+        try:
+            a_name = item_dict["labels"]['pt']
+        except:
+            print("no pt label")
+            try:
+                a_name = item_dict["labels"]['mul']
+            except:
+                print("no mul label")
+                try:
+                    a_name = item_dict["labels"]['en']
+                except:
+                    print("no en label either!")
+                    print (item_dict["labels"])
 
     # Falta obter página no wikisource
     # try:
