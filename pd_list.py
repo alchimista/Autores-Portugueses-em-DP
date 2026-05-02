@@ -1,24 +1,18 @@
-#!/usr/bin/env python3
-"""
-Copyright (C) 2021 alchimista alchimistawp@gmail.com
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#	   pd_list.py 
+#
+#	   (C) 2026 Alchimista https://alchimista.pt/
+#
+#		Distributed under the terms of the GNU GPL license.
 
 import pywikibot
 from datetime import date
 from pywikibot import pagegenerators as pg
 
 # pd_year = date.today().year - 70
-pd_year_today = 2026
+pd_year_today = 2027
 pd_year = pd_year_today - 71
 pd_year_1 = (pd_year + 1)
 print(pd_year)
@@ -26,141 +20,157 @@ QUERY = ('''SELECT DISTINCT ?item (year(?birthdate) as ?birthyear) ?deathdate WH
   ?item wdt:P31 wd:Q5.
   ?item wdt:P27 wd:Q45.
   ?item wdt:P570 ?time0. hint:Prior hint:rangeSafe true.
+  
   OPTIONAL{?item wdt:P569 ?birthdate .}
   OPTIONAL{?item wdt:P570 ?deathdate .}
+  
+  OPTIONAL { ?item wdt:P214 ?viaf. }     # VIAF ID
+  OPTIONAL { ?item wdt:P1005 ?bnp. }     # BNP ID
+  
   FILTER((?time0 >= "''' + str(pd_year) + '''-01-01"^^xsd:dateTime) && (?time0 < "''' + str(
-    pd_year_1) + '''-01-01"^^xsd:dateTime))}''')
+	pd_year_1) + '''-01-01"^^xsd:dateTime))}''')
 
 wikidata_site = pywikibot.Site("wikidata", "wikidata")
 generator = pg.WikidataSPARQLPageGenerator(QUERY, site=wikidata_site)
 
 author_qlist = (
-"Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
-"Q1281618", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634", 
-"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999", "Q130258037",
-"Q11774156", "Q901", "Q28389", "Q33231", "Q82594", "Q121594", "Q177220",
-"Q183945", "Q191633", "Q191633", "Q329439", "Q589298", "Q639669", "Q644687",
-"Q674426", "Q715301", "Q864380", "Q876864", "Q1350157", "Q1414443", "Q1607826",
-"Q1622272", "Q1706722", "Q1925963", "Q2516866", "Q3282637", "Q3330547",
-"Q3391743", "Q3400985", "Q4164507", "Q4220892", "Q4263842", "Q4964182",
-"Q5322166", "Q5669847", "Q9379869", "Q10694573", "Q10798782", "Q11569986",
-"Q11774202", "Q12144794", "Q15077007", "Q15296811", "Q15980158", "Q16947657",
-"Q17098559", "Q17167049", "Q18844224", "Q19507792", "Q21550489", "Q73306227")
+	"Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
+
+	"Q36180", "Q6625963", "Q36834", "Q49757", "Q214917", "Q4853732", "Q201788", "Q1930187", "Q6051619", "Q1028181",
+	"Q1281618", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634",
+
+	"Q1281618", "Q10800557", "Q2259451", "Q2500638", "Q2526255", "Q333634",
+	"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999", "Q130258037",
+
+	"Q4853732", "Q486748", "Q6051619", "Q6625963", "Q42973", "Q1734662", "Q482980", "Q1650915", "Q33999",
+	"Q11774156", "Q901", "Q28389", "Q33231", "Q82594", "Q121594", "Q177220",
+
+	"Q183945", "Q191633", "Q191633", "Q329439", "Q589298", "Q639669", "Q644687",
+
+	"Q674426", "Q715301", "Q864380", "Q876864", "Q1350157", "Q1414443", "Q1607826",
+
+	"Q1622272", "Q1706722", "Q1925963", "Q2516866", "Q3282637", "Q3330547",
+
+	"Q3391743", "Q3400985", "Q4164507", "Q4220892", "Q4263842", "Q4964182",
+
+	"Q5322166", "Q5669847", "Q9379869", "Q10694573", "Q10798782", "Q11569986",
+
+	"Q11774202", "Q12144794", "Q15077007", "Q15296811", "Q15980158", "Q16947657",
+
+	"Q17098559", "Q17167049", "Q18844224", "Q19507792", "Q21550489", "Q73306227"
+)
 
 authors = dict()
-wikitext = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[direito autoral]] de uma obra expira, ela entra em [[domínio público]].
+wikitext = """Quando o [[direito autoral]] de uma obra expira, ela entra em '''[[domínio público]]'''.
 Em Portugal, uma obra entra em [[domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=http://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?artigo_id=484A0031&nid=484&tabela=leis&pagina=1&ficha=1&so_miolo=&nversao=#artigo |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
+Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de nascimento
-! Data de morte
+! Data de Nascimento
+! Data de Morte
 ! Item no Wikidata"""
 
-
-wikisource = """Segue-se uma lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """. Quando o [[w:direito autoral|]] de uma obra expira, ela entra em [[w:domínio público]].
+wikisource = """Quando o [[w:direito autoral|]] de uma obra expira, ela entra em '''[[w:domínio público]]'''.
 Em Portugal, uma obra entra em [[w:domínio público]] 70 anos após a morte do autor.<ref>{{citar web|url=temp |título=CÓDIGO DO DIREITO DE AUTOR E DOS DIREITOS CONEXOS| acessodata=2018-12-29}}</ref>
+Segue-se uma '''lista de autores Portugueses cujas obras entram em domínio público em """ + str(pd_year_today) + """'''.
 {| class="wikitable sortable" border="1" style="border-spacing:0; style="width:100%;"
 ! Nome
-! Data de nascimento
-! Data de morte
+! Data de Nascimento
+! Data de Morte
 ! Item no Wikidata"""
 
 for item in generator:
-    # print(item)
-    item_dict = item.get(get_redirect= True)  # Get the item dictionary
-    # print (item_dict["labels"])
-    print(type(item))
-    print (item)
+	# print(item)
+	item_dict = item.get(get_redirect=True)  # Get the item dictionary
+	# print (item_dict["labels"])
+	print(type(item))
+	print(item)
 
-    try:
-        a_name = item.getSitelink('ptwiki')
-    except pywikibot.exceptions.NoSiteLinkError:
-        try:
-            a_name = item_dict["labels"]['pt']
-        except:
-            print("no pt label")
-            try:
-                a_name = item_dict["labels"]['mul']
-            except:
-                print("no mul label")
-                try:
-                    a_name = item_dict["labels"]['en']
-                except:
-                    print("no en label either!")
-                    print (item_dict["labels"])
+	try:
+		a_name = item.getSitelink('ptwiki')
+	except pywikibot.exceptions.NoSiteLinkError:
+		try:
+			a_name = item_dict["labels"]['pt']
+		except:
+			a_name = item_dict["labels"]['en']
 
-    # Falta obter página no wikisource
-    # try:
-    #     ws_name = item.getSitelink('ptwikisource')
-    # except pywikibot.exceptions.NoSiteLinkError:
-    #
-    #     ws_name = item_dict["labels"]['pt']
-    #
-    # except:
-    #     ws_name = item_dict["labels"]['en']
+	except:
+		a_name = item_dict["labels"]['en']
 
-    clm_dict = item_dict["claims"]  # Get the claim dictionary
-    # print(clm_dict)
-    try:
+		print("no pt label")
 
-        clm_list = clm_dict["P106"]
-        # print(clm_list)
-        # date_of_death = str()
+	# Falta obter página no wikisource
+	# try:
+	#     ws_name = item.getSitelink('ptwikisource')
+	# except pywikibot.exceptions.NoSiteLinkError:
+	#
+	#     ws_name = item_dict["labels"]['pt']
+	#
+	# except:
+	#     ws_name = item_dict["labels"]['en']
 
-        author = False
-        for clm in clm_list:
-            clm_trgt = clm.getTarget()
-            # print("--", clm_trgt.title())
-            if clm_trgt.title() in author_qlist:
-                author = True
-        if author:
-            print(item)
-            print("name: ", a_name)
-            date_of_birth = None
-            date_of_death = None
+	clm_dict = item_dict["claims"]  # Get the claim dictionary
+	# print(clm_dict)
+	try:
 
-            clm_death = clm_dict["P570"]
-            for clm2 in clm_death:
-                death = clm2.getTarget()
-                if death.day != 0 and death.month != 0:
-                    date_of_death = "{}-{}-{}".format(death.day, death.month, death.year)
-                else:
-                    date_of_death = death.year
+		clm_list = clm_dict["P106"]
+		# print(clm_list)
+		# date_of_death = str()
 
-                print("death: ", date_of_death)
-            clm_born = clm_dict['P569']
-            for clm_b in clm_born:
-                born = clm_b.getTarget()
-                if born.day != 0 and born.month != 0:
+		author = False
+		for clm in clm_list:
+			clm_trgt = clm.getTarget()
+			# print("--", clm_trgt.title())
+			if clm_trgt.title() in author_qlist:
+				author = True
+		if author:
+			print(item)
+			print("name: ", a_name)
+			date_of_birth = None
+			date_of_death = None
 
-                    date_of_birth = "{}-{}-{}".format(born.day, born.month, born.year)
-                else:
-                    date_of_birth = born.year
+			clm_death = clm_dict["P570"]
+			for clm2 in clm_death:
+				death = clm2.getTarget()
+				if death.day != 0 and death.month != 0:
+					date_of_death = "{}-{}-{}".format(death.day, death.month, death.year)
+				else:
+					date_of_death = death.year
 
-            print("--", a_name, date_of_death, date_of_birth, item.title())
+				print("death: ", date_of_death)
+			clm_born = clm_dict['P569']
+			for clm_b in clm_born:
+				born = clm_b.getTarget()
+				if born.day != 0 and born.month != 0:
 
-            wikitext = (wikitext + """
+					date_of_birth = "{}-{}-{}".format(born.day, born.month, born.year)
+				else:
+					date_of_birth = born.year
+
+			print("--", a_name, date_of_death, date_of_birth, item.title())
+
+			wikitext = (wikitext + """
 |-
 || [[""" + a_name + """]]
 || """ + str(date_of_birth) + """
 || """ + str(date_of_death) + """
 || {{Q|""" + item.title() + """}}""")
-            print(wikitext)
+			print(wikitext)
 
-            wikisource = (wikisource + """
+			wikisource = (wikisource + """
 |-
-|| [[author:"""+ a_name + """|]]
+|| [[author:""" + a_name + """|]]
 || """ + str(date_of_birth) + """
 || """ + str(date_of_death) + """
 || {{Q|""" + item.title() + """}}""")
 
-            # break
-    except Exception as e:
-        print("error: ", a_name, e)
+		# break
+	except Exception as e:
+		print("error: ", a_name, e)
 
-    # except:
-    #     print ("error with")
-    #     pass
+# except:
+#     print ("error with")
+#     pass
 wikitext = wikitext + """\n|}
 
 ==Referências==
@@ -169,7 +179,6 @@ wikitext = wikitext + """\n|}
 [[Categoria:Listas sobre domínio público]]
 [[Categoria:%s]]""" % (pd_year_today)
 print(wikitext)
-
 
 wikisource = wikisource + """"\n|}
 
@@ -184,10 +193,9 @@ page = pywikibot.Page(site, "User:Aleth Bot/PD{}".format(pd_year_today))
 page.text = wikitext
 page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
 
-print (wikisource)
-
+print(wikisource)
 
 wsite = pywikibot.Site('pt', 'wikisource')
 ws_page = pywikibot.Page(wsite, "User:Aleth Bot/PD{}".format(pd_year_today))
 ws_page.text = wikisource
-#ws_page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
+# ws_page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
