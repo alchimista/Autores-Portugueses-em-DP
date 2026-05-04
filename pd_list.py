@@ -97,19 +97,33 @@ for item in generator:
 	# print(clm_dict)
 	try:
 
-		clm_list = clm_dict["P106"]
-		# print(clm_list)
-		# date_of_death = str()
-
 		author = False
-		for clm in clm_list:
-			clm_trgt = clm.getTarget()
-			# print("--", clm_trgt.title())
-			if clm_trgt.title() in author_qlist:
-				author = True
+		# if viaf or bnp then occupations aren't needed
+		viaf_list = bnp_list = clm_list = {}
+		try:
+			viaf_list = clm_dict["P214"]
+		except:
+			print("debug: no P214 (VIAF) found for", a_name)
+		try:
+			bnp_list = clm_dict["P1005"]
+		except:
+			print("debug: no P1005 (BNP) found for", a_name)
+		if len(viaf_list) + len(bnp_list) > 0:
+			author = True
+		else:
+			try:
+				clm_list = clm_dict["P106"]
+			except:
+				print("debug: no P106 (clm_list) found for", a_name)
+			for clm in clm_list:
+				clm_trgt = clm.getTarget()
+				# print("--", clm_trgt.title())
+				if clm_trgt.title() in author_qlist:
+					author = True
+
 		if author:
-			print(item)
-			print("name: ", a_name)
+			# print(item)
+			# print("name: ", a_name)
 			date_of_birth = None
 			date_of_death = None
 
@@ -121,7 +135,7 @@ for item in generator:
 				else:
 					date_of_death = death.year
 
-				print("death: ", date_of_death)
+				# print("death: ", date_of_death)
 			clm_born = clm_dict['P569']
 			for clm_b in clm_born:
 				born = clm_b.getTarget()
@@ -139,7 +153,7 @@ for item in generator:
 || """ + str(date_of_birth) + """
 || """ + str(date_of_death) + """
 || {{Q|""" + item.title() + """}}""")
-			print(wikitext)
+			# print(wikitext)
 
 			wikisource = (wikisource + """
 |-
@@ -162,7 +176,7 @@ wikitext = wikitext + """\n|}
 
 [[Categoria:Listas sobre domínio público]]
 [[Categoria:%s]]""" % (pd_year_today)
-print(wikitext)
+# print(wikitext)
 
 wikisource = wikisource + """"\n|}
 
@@ -177,7 +191,7 @@ page = pywikibot.Page(site, "User:Aleth Bot/PD{}".format(pd_year_today))
 page.text = wikitext
 page.save(summary="[[wp:BOT|BOT]]: Lista de autores que entram em domínio Público")
 
-print(wikisource)
+# print(wikisource)
 
 wsite = pywikibot.Site('pt', 'wikisource')
 ws_page = pywikibot.Page(wsite, "User:Aleth Bot/PD{}".format(pd_year_today))
